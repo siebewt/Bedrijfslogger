@@ -1,0 +1,64 @@
+//// -- LEVEL 1
+//// -- Schemas, Tables and References
+
+// Creating tables
+// You can define the tables with full schema names
+Table bedrijven {
+  id int
+  bedrijfsid id
+  bedrijfsnaam varchar
+  provincie provincies
+  sector sectoren
+}
+
+Table gebruikers {
+  id int [pk, increment]
+  name varchar
+  created_at timestamp
+}
+
+Table notities {
+  id int
+  Bid int
+  Cid int
+  notitie varchar
+}
+
+Table contactspersoon{
+  id int
+  naam varchar
+  status varchar
+}
+
+enum sectoren{
+  overheid
+  consument
+  particulier
+}
+
+enum provincies {
+  friesland
+  drenthe
+  groningen
+  gelderland
+  overijssel
+  "noord-holland"
+  "zuid-holland"
+  "noord-brabant"
+  flevoland
+  zeeland
+  utrecht
+  limburg
+}
+
+
+
+// Creating references
+// You can also define relaionship separately
+// > many-to-one; < one-to-many; - one-to-one; <> many-to-many
+//Ref: U.country_code > countries.code  
+//Ref: ecommerce.merchants.country_code> countries.code
+Ref: contactspersoon.id - notities.Cid
+Ref: gebruikers.id < bedrijven.id
+Ref: gebruikers.id - notities.id
+Ref: bedrijven.bedrijfsid - notities.Bid
