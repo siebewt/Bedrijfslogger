@@ -9,7 +9,7 @@
 <body>
 <p class="text-preview">Foto die word toegevoegd:</p>
 <div class='image-preview' style='height:200px;'><img id="output" alt='foto' src=""></div>
-<form class="form" action="uploads/adoptieupload.php" method="post" name="cmsform" enctype="multipart/form-data">
+<form class="form" action="uploads/upload.php" method="post" name="cmsform" enctype="multipart/form-data">
     <h1 class="login-title">Bedrijfs toevoegen</h1>
     <p>Naam: *</p><input type="text" name="title" id="title" required="required"/>
     <p>Tekst: *</p><textarea name="body" minlength="100" rows="5" cols="40" required="required" ></textarea>
