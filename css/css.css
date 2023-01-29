@@ -1,0 +1,14 @@
+.navbar{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid;
+    border-left: 0px solid;
+    width: 100px;
+    left: -8px;
+    position: relative;
+    border-bottom: 0px;
+}
+.Bedrijf{
+    padding: 10px;
+    border-bottom: 1px solid;
+}
