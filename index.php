@@ -9,9 +9,22 @@
 <body>
 <?php
 include('header.php');
-//$conn = mysqli_connect('SELECT * FROM bedrijven LIMIT 10')
+function GetBedrijf(){
+    $link = mysqli_connect(server, user, password, database);
+    if (isset($_GET['bedrijf'])){
+        $bedrijf = $_GET['bedrijf'];
+    }
+    else{
+        $bedrijf = "";
+    }
+    $sql = "SELECT * FROM bedrijven WHERE bedrijfsnaam = '$bedrijf'";
+    $res = $link->query($sql);
+    while ($row = $res->fetch_assoc()) {
+        echo '<h1>'.$row['bedrijfsnaam'].'</h1>';
+    }
 
-//while($row=$conn)
+}
+GetBedrijf();
 ?>
 </body>
 </html>

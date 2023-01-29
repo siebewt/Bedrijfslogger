@@ -1,3 +1,9 @@
+<?php
+// function DropDown($table_name, $column_name){
+//   $query = "SELECT $table_name FROM bedrijven";
+
+// }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +15,33 @@
 <body>
 <p class="text-preview">Foto die word toegevoegd:</p>
 <div class='image-preview' style='height:200px;'><img id="output" alt='foto' src=""></div>
-<form class="form" action="uploads/adoptieupload.php" method="post" name="cmsform" enctype="multipart/form-data">
+<form class="form" action="upload/bedrijfsupload.php" method="post" name="cmsform" enctype="multipart/form-data">
     <h1 class="login-title">Bedrijfs toevoegen</h1>
-    <p>Naam: *</p><input type="text" name="title" id="title" required="required"/>
-    <p>Tekst: *</p><textarea name="body" minlength="100" rows="5" cols="40" required="required" ></textarea>
+    <p>Bedrijfsnaam: *</p><input type="text" name="title" id="title" required="required"/>
     <p>Selecteer logo om te uploaden:<input type="file" name="file" onchange="loadFile(event)" id="file" /></p>
+    <label for="provincies">Provincie: </label>
+    <select name="provincies" id="provincies">
+      <option value="friesland">Friesland</option>
+      <option value="drenthe">drenthe</option>
+      <option value="gelderland">gelderland</option>
+      <option value="overijssel">overijssel</option>
+      <option value="noord-holland">noord-holland</option>
+      <option value="zuid-holland">zuid-holland</option>
+      <option value="noord-brabant">noord-brabant</option>
+      <option value="flevoland">flevoland</option>
+      <option value="zeeland">zeeland</option>
+      <option value="utrecht">utrecht</option>
+      <option value="limburg">limburg</option>
+    </select>
+    <br>
+    <label for="sector">Sector: </label>
+    <select name="sector" id="sector">
+      <option value="overheid">Overheid</option>
+      <option value="Consument">Consument</option>
+      <option value="Particulier">Particulier</option>
+    </select>
+    <br>
+
 
     <a href="index.php" class="link">Terug</a>
 
