@@ -1,3 +1,7 @@
+
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,9 +11,9 @@
     <title>Panel</title>
 </head>
 <body>
+<a class="account" href="account.php"><i class="fa-solid fa-user fa-3x"></i></a>
 <?php
 include('header.php');
-session_start();
 requireValidUser();
 function GetBedrijf(){
     $link = mysqli_connect(server, user, password, database);
@@ -21,7 +25,7 @@ function GetBedrijf(){
     }
     $sql = "SELECT t0.id, t0.image, t0.bedrijfsnaam, t1.Bid, t1.notitie, t2.tasks, t0.date FROM bedrijven t0 LEFT JOIN notities t1 ON t0.id = t1.Bid" 
     . " LEFT JOIN tasks t2 ON t0.id = t2.Bid WHERE bedrijfsnaam = '$bedrijf'"
-    . " LIMIT 1 OFFSET 0";
+    . " LIMIT 1";
     //select bedrijfsnaam from bedrijven WHERE instr(bedrijfsnaam, "Bedrijf");
     //SELECT t0.id, t0.image, t0.bedrijfsnaam, t1.Bid, t1.notitie FROM bedrijven t0 INNER JOIN notities t1 ON t0.id = t1.Bid WHERE bedrijfsnaam = '$bedrijf
 
@@ -36,14 +40,20 @@ function GetBedrijf(){
          } 
          ?>
         <div><img class="logo" src='./pictures/<?php echo $image?>' alt='logo'></a></div>
+        <?php if (!isAdmin()){ ?>
+        <div class="delete-button"><a href="delete.php?id=<?php echo $row['id'];?>&amp;table=bedrijven&amp;location=index.php&amp;image=<?php echo $row['image'];?>" onClick="return confirm('Weet je zeker dat je dit wilt verwijderen?')" class='table-link'><i class="fa fa-trash" id="deletebutton" aria-hidden="true"></i></a>
+        </div>    
+        <?php } ?>
     </div>
     <div class="card-holder">
         <div class="card">
-            <a href="upload/notitie.php?Bid=<?php echo $row['id'];?>">notitie</a>
-            <p><?php echo $row['notitie'];?></p>
+            <p>notitie</p>
+            <a href="upload/notitie.php?Bid=<?php echo $row['id'];?>"><i class="fa fa-plus" aria-hidden="true"></i></a>
+            <p class="text"><?php echo $row['notitie'];?></p>
         </div>
         <div class="card">
-        <a href="upload/tasks.php?Bid=<?php echo $row['id'];?>">Tasks</a>
+        <p>Tasks</p>
+        <a href="upload/tasks.php?Bid=<?php echo $row['id'];?>"><i class="fa fa-plus" aria-hidden="true"></i></a>
         <p><?php echo $row['tasks'];?></p>
     </div>
     </div>

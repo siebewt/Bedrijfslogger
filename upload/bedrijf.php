@@ -7,14 +7,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="../css/css.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload</title>
 </head>
 <body>
-<p class="text-preview">Foto die word toegevoegd:</p>
-<div class='image-preview' style='height:200px;'><img id="output" alt='foto' src=""></div>
+  <div class="b-upload">
 <form class="form" action="bedrijfsupload.php" method="post" name="cmsform" enctype="multipart/form-data">
     <h1 class="login-title">Bedrijfs toevoegen</h1>
     <p>Bedrijfsnaam: *</p><input type="text" name="title" id="title" required="required"/>
@@ -47,6 +47,8 @@
 
     <input type="submit" class="login-button" value="Verzend" name="verzend">
 </form>
+</div>
+<div class='image-preview'><p>Foto die word toegevoegd:</p><br><br><img id="output" alt='foto' src=""></div>
 </body>
 </html>
 <script>

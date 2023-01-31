@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="css/css.css">
 <script src="https://kit.fontawesome.com/9e89c75990.js" crossorigin="anonymous"></script>
-<a href="upload/bedrijf.php">Nieuwe bedrijf toevoegen</a><br><br>
+<a class="Bedrijftoevoegen" href="upload/bedrijf.php"><i class="fa fa-plus fa-3x" aria-hidden="true"></i></a>
 <?php
 include 'config/config.php'; 
 function GetBedrijvenLijst($offset = null){
@@ -13,10 +13,10 @@ function GetBedrijvenLijst($offset = null){
     $sql .= " limit 20";
     $res = $link->query($sql);
     ?>
-    <div class="search-container">
+    <div class="search-bar">
     <form action="index.php" method="post" name="cmsform" enctype="multipart/form-data">
     <input type="text" name="search" id="search" placeholder="Zoek">
-    <button type="submit"><i class="fa fa-search"></i></button>
+    <button type="submit"><i class="fa fa-search search-button"></i></button>
     </form>
     </div>
     <?php

@@ -4,8 +4,15 @@ define("user","root");
 define("password","");
 define("database","Bedrijven");
 
+class delete{
+    public $id;
+    function delete($delete){
+    echo "<a href='delete.php?id=".$row['id']."&amp;db=projecten&amp;location=projecten_crud.php&amp;image=".$row['image']." onClick='return confirm('Weet je zeker dat je dit wilt verwijderen?')' class='table-link'>Verwijderen</a></p>";
+}
+}
+
 function isAdmin() {
-    return isset($_SESSION['user']['admin']) && $_SESSION['user']['admin'] === 1; 
+    return $_SESSION['admin'] != 1; 
 }
 
 function requireValidUser() {

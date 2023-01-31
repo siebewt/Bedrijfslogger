@@ -18,3 +18,4 @@ if ($res == TRUE){
     echo "goed";
 }
 header('Location: ../../bedrijfslogger');
+?>

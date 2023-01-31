@@ -1,28 +1,113 @@
+.Bedrijftoevoegen{
+    position: absolute;
+    left: 100px;
+}
+body{
+    margin: 0;
+}
 .navbar{
     display: flex;
     flex-direction: column;
     border: 1px solid;
-    border-left: 0px solid;
+    border-left: 1px solid;
+    padding-bottom: 100%;
     width: 100px;
     left: -5px;
     position: absolute;
     border-bottom: 0px;
 }
+.account{
+    top: 0px;
+    padding: 25px 30px;
+    position: absolute;
+    right: 0px;
+}
+.addacount{
+    position: relative;
+    top: 30px;
+}
+
+.accountdisplay{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    margin: auto;
+}
+
+.accountdisplay form{
+    margin: auto;
+}
+
+.account-card-display{
+    display: flex;
+    flex-direction: row;
+    text-align: justify;
+    margin: auto;
+    width: 60%;
+}
+.account-wrapper{
+    font-size: 1.2em;
+    margin: 0 auto;
+    width: 60%;
+    padding: 75px 0 200px 0;
+    text-align: justify;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.accountsdisplay{
+    font-size: 1.2em;
+    margin: 0 auto;
+    width: 60%;
+    text-align: justify;
+    padding: 5px;
+}
+.delete-button{
+    padding: 5px;
+    text-align: center;
+    position: absolute;
+    right: 5px;
+    border: 1px solid black;
+}
+.image-preview{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    width: 50%;
+}
+.image-preview img[id=output]{
+    height: 250px;
+    width: 250px;
+}
+
+.b-upload{
+    text-align: center;
+    align-items: center;
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+}
 .Bedrijf{
     padding: 10px;
-    border-bottom: 1px solid;
+    border-bottom: 1px solid black;
 }
 .body-wrapper{
     font-size: 1.2em;
     margin: 0 auto;
     width: 60%;
-    padding: 25px 0 200px 0;
+    padding: 75px 0 200px 0;
     text-align: justify;
 }
 .title-wrapper{
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.logo{
+    height: 100px;
+    width: 100px;
 }
 .logo[src=""]{
     display: none;
@@ -35,16 +120,34 @@
     top: 150px;
 }
 .card{
-    padding: 5px;
+    height: 250px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 50px 50px;
     border: 1px solid;
 }
-.search-bar{
-    float: right;
-  padding: 6px 10px;
-  margin-top: 8px;
-  margin-right: 16px;
-  background: #ddd;
-  font-size: 17px;
-  border: none;
-  cursor: pointer;
+.card a{
+    position: relative;
+    top: -20px;
+    left: 250px;
+}
+.card p {
+    margin-bottom: 0px;
+    position: relative;
+    right: 25px;
+}
+.text{
+    margin-top: 0px;
+}
+.search-bar input[type=text]{
+    left: 5px;
+    position: relative;
+    width: 88px;
+    display: inline-block;
+}
+.search-bar button[type=submit]{
+    top: -1px;
+    right: 0px;
+    position: absolute;
 }
