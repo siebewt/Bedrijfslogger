@@ -9,6 +9,8 @@
 <body>
 <?php
 include('header.php');
+session_start();
+requireValidUser();
 function GetBedrijf(){
     $link = mysqli_connect(server, user, password, database);
     if (isset($_GET['bedrijf'])){
@@ -17,7 +19,10 @@ function GetBedrijf(){
     else{
         $bedrijf = "";
     }
-    $sql = "SELECT t0.id, t0.image, t0.bedrijfsnaam, t1.Bid, t1.notitie, t2.tasks FROM bedrijven t0 LEFT JOIN notities t1 ON t0.id = t1.Bid LEFT JOIN tasks t2 ON t0.id = t2.Bid WHERE bedrijfsnaam = '$bedrijf'";
+    $sql = "SELECT t0.id, t0.image, t0.bedrijfsnaam, t1.Bid, t1.notitie, t2.tasks, t0.date FROM bedrijven t0 LEFT JOIN notities t1 ON t0.id = t1.Bid" 
+    . " LEFT JOIN tasks t2 ON t0.id = t2.Bid WHERE bedrijfsnaam = '$bedrijf'"
+    . " LIMIT 1 OFFSET 0";
+    //select bedrijfsnaam from bedrijven WHERE instr(bedrijfsnaam, "Bedrijf");
     //SELECT t0.id, t0.image, t0.bedrijfsnaam, t1.Bid, t1.notitie FROM bedrijven t0 INNER JOIN notities t1 ON t0.id = t1.Bid WHERE bedrijfsnaam = '$bedrijf
 
     $res = $link->query($sql);

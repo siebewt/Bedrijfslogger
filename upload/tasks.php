@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,7 @@
     <h1 class="login-title">Tasks</h1>
     <p>Tasks: </p><input type="text" name="tasks" id="tasks" required="required"/>
     <input type="hidden" name="Bid" id="Bid" required="required" value="<?php echo $_GET['Bid'];?>"/>
+    <input type="hidden" name="Cid" id="Cid" required="required" value="<?php echo $_SESSION['id'];?>"/>
 
 
     <a href="index.php" class="link">Terug</a>
