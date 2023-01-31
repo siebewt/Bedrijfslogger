@@ -41,14 +41,14 @@ function GetBedrijf(){
          ?>
         <div><img class="logo" src='./pictures/<?php echo $image?>' alt='logo'></a></div>
         <?php if (!isAdmin()){ ?>
-        <div class="delete-button"><a href="delete.php?id=<?php echo $row['id'];?>&amp;table=bedrijven&amp;location=index.php&amp;image=<?php echo $row['image'];?>" onClick="return confirm('Weet je zeker dat je dit wilt verwijderen?')" class='table-link'><i class="fa fa-trash" id="deletebutton" aria-hidden="true"></i></a>
+        <div class="delete-button"><a href="delete.php?id=<?php echo $row['id'];?>&amp;table=bedrijven&amp;location=index.php&amp;image=<?php echo $row['image'];?>" onClick="return confirm('Weet je zeker dat je dit wilt verwijderen?')" class='table-link'><i class="fa fa-trash fa-3x" id="deletebutton" aria-hidden="true"></i></a>
         </div>    
         <?php } ?>
     </div>
     <div class="card-holder">
         <div class="card">
             <p>notitie</p>
-            <a href="upload/notitie.php?Bid=<?php echo $row['id'];?>"><i class="fa fa-plus" aria-hidden="true"></i></a>
+            <a href="upload/notitie.php?Bid=<?php echo $row['id'];?>&amp;bedrijf=<?php echo $bedrijf?>"><i class="fa fa-plus" aria-hidden="true"></i></a>
             <p class="text"><?php echo $row['notitie'];?></p>
         </div>
         <div class="card">

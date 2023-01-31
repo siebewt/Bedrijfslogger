@@ -22,17 +22,25 @@ mysqli_set_charset($link,"UTF8");
     $location = $_GET['location'];
     $image = ("pictures/".$_GET['image']);
     unlink($image);
+    if ($table == "bedrijven"){
+        $stmt = $link->prepare("DELETE FROM notities WHERE Bid = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt = $link->prepare("DELETE FROM tasks WHERE Bid = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+    }
 
-    $result = mysqli_query($link, "DELETE FROM $table WHERE id=$id");
+    //$result = mysqli_query($link, "DELETE FROM $table WHERE id=$id");
 
     if($result == TRUE){
-       header("Location: $location");
+       //header("Location: $location");
     }
     else{
-        header("Location: $location");
+        //header("Location: $location");
     }
 }
 else {
-    header('Location: ../login.php');
+    //header('Location: ../login.php');
 }
 ?>

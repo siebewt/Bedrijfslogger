@@ -1,3 +1,4 @@
+a { color:black }
 .Bedrijftoevoegen{
     position: absolute;
     left: 100px;
@@ -66,8 +67,7 @@ body{
     padding: 5px;
     text-align: center;
     position: absolute;
-    right: 5px;
-    border: 1px solid black;
+    right: 20px;
 }
 .image-preview{
     display: flex;
