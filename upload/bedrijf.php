@@ -15,11 +15,7 @@
 <body>
 <p class="text-preview">Foto die word toegevoegd:</p>
 <div class='image-preview' style='height:200px;'><img id="output" alt='foto' src=""></div>
-<<<<<<< HEAD
-<form class="form" action="upload/bedrijfsupload.php" method="post" name="cmsform" enctype="multipart/form-data">
-=======
-<form class="form" action="uploads/upload.php" method="post" name="cmsform" enctype="multipart/form-data">
->>>>>>> e363a6acb8e4628580a10f8b28b16372683e3551
+<form class="form" action="bedrijfsupload.php" method="post" name="cmsform" enctype="multipart/form-data">
     <h1 class="login-title">Bedrijfs toevoegen</h1>
     <p>Bedrijfsnaam: *</p><input type="text" name="title" id="title" required="required"/>
     <p>Selecteer logo om te uploaden:<input type="file" name="file" onchange="loadFile(event)" id="file" /></p>

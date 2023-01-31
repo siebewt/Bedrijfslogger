@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="css/css.css">
-<a href="bedrijfsupload.php" class='table-link'>Nieuwe bedrijf toevoegen</a><br><br>
+<a href="upload/bedrijf.php">Nieuwe bedrijf toevoegen</a><br><br>
 <?php
 include 'config/config.php'; 
 function GetBedrijvenLijst($offset = null){

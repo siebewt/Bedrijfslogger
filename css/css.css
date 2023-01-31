@@ -4,11 +4,37 @@
     border: 1px solid;
     border-left: 0px solid;
     width: 100px;
-    left: -8px;
-    position: relative;
+    left: -5px;
+    position: absolute;
     border-bottom: 0px;
 }
 .Bedrijf{
     padding: 10px;
     border-bottom: 1px solid;
+}
+.body-wrapper{
+    font-size: 1.2em;
+    margin: 0 auto;
+    width: 60%;
+    padding: 25px 0 200px 0;
+    text-align: justify;
+}
+.title-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo[src=""]{
+    display: none;
+}
+.card-holder{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    top: 150px;
+}
+.card{
+    padding: 5px;
+    border: 1px solid;
 }
