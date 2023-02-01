@@ -3,6 +3,7 @@ a { color:black }
     position: absolute;
     left: 100px;
 }
+
 body{
     margin: 0;
 }
@@ -11,11 +12,51 @@ body{
     flex-direction: column;
     border: 1px solid;
     border-left: 1px solid;
-    padding-bottom: 100%;
+    height: 100%;
     width: 100px;
     left: -5px;
     position: absolute;
     border-bottom: 0px;
+}
+.navbar{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid;
+    border-left: 1px solid;
+    height: 100%;
+    width: 100px;
+    left: -5px;
+    position: absolute;
+    border-bottom: 0px;
+}
+.AddCPersoon{
+    position: absolute;
+    top: 180px;
+    right: 160px;
+}
+
+.c-card{
+    border: 1px solid;
+    padding: 15px;
+    text-align: center;
+}
+.c-card a[class=delete-button]{
+    position: relative;
+    left: 15px;
+}
+.navbar-personen{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        width: 150px;
+        right: -2px;
+        top: 175px;
+        position: absolute;
+}
+
+.navbar-personen a{
+    position: relative;
+    top: 0px;
 }
 .account{
     top: 0px;
@@ -39,7 +80,26 @@ body{
     margin: auto;
 }
 
+.delete-notitie{
+    position: absolute;
+    top: 48px;
+    right: 310px;
+}
+.delete-task{
+    position: absolute;
+    top: 48px;
+    left: 24px;
+}
+
+.search-bar-account{
+    top: 180px;
+    position: relative;
+    margin: auto;
+    width: 60%;
+}
+
 .account-card-display{
+    line-height: 200px;
     display: flex;
     flex-direction: row;
     text-align: justify;
@@ -109,7 +169,7 @@ body{
     height: 100px;
     width: 100px;
 }
-.logo[src=""]{
+.logo[src="./pictures/"]{
     display: none;
 }
 .card-holder{
@@ -119,8 +179,9 @@ body{
     position: relative;
     top: 150px;
 }
-.card{
-    height: 250px;
+.card {
+    height: auto;
+    min-height: 320px;
     width: 250px;
     display: flex;
     flex-direction: column;
@@ -136,6 +197,16 @@ body{
     margin-bottom: 0px;
     position: relative;
     right: 25px;
+}
+.card div[class=page]{
+    flex-direction: row;
+    display: flex;
+    position: relative;
+    top: -23px;
+    right: 200px;
+}
+.card a[class=page]{
+    padding-right: 10px;
 }
 .text{
     margin-top: 0px;

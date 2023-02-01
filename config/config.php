@@ -1,7 +1,7 @@
 <?php 
 define("server","localhost");
-define("user","root");
-define("password","");
+define("user","Bedrijf");
+define("password","mw/2!GIvqFfsJjsg");
 define("database","Bedrijven");
 
 class delete{

@@ -34,9 +34,13 @@ function GetUser(){
     <title>Account</title>
 </head>
 <body>
+    <a class="account-terug" href="index.php">Terug</a>
+    <div class="search-bar-account">
     <form action="account.php" method="post" name="cmsform" enctype="multipart/form-data">
     <input type="text" name="searchuser" id="searchuser" placeholder="Zoek">
     <button type="submit"><i class="fa fa-search search-button"></i></button>
+    </form>
+    </div>
     <div class="account-wrapper">
         <h1><?php echo $_SESSION['username'] ?></h1>
         <a class="addacount" href="addaccount.php"><i class="fa fa-plus fa-2x" aria-hidden="true"></i></a>
