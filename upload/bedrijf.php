@@ -17,7 +17,7 @@
   <div class="b-upload">
 <form class="form" action="bedrijfsupload.php" method="post" name="cmsform" enctype="multipart/form-data">
     <h1 class="login-title">Bedrijfs toevoegen</h1>
-    <p>Bedrijfsnaam: *</p><input type="text" name="title" id="title" required="required"/>
+    <p>Bedrijfsnaam: *</p><input type="text" name="bedrijfsnaam" id="bedrijfsnaam" required="required"/>
     <p>Selecteer logo om te uploaden:<input type="file" name="file" onchange="loadFile(event)" id="file" /></p>
     <label for="provincies">Provincie: </label>
     <select name="provincies" id="provincies">

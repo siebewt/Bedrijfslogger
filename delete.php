@@ -31,16 +31,16 @@ mysqli_set_charset($link,"UTF8");
         $stmt->execute();
     }
 
-    //$result = mysqli_query($link, "DELETE FROM $table WHERE id=$id");
+    $result = mysqli_query($link, "DELETE FROM $table WHERE id=$id");
 
     if($result == TRUE){
-       //header("Location: $location");
+       header("Location: $location");
     }
     else{
-        //header("Location: $location");
+        header("Location: $location");
     }
 }
 else {
-    //header('Location: ../login.php');
+    header('Location: ../login.php');
 }
 ?>

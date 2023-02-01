@@ -5,7 +5,7 @@
 include 'config/config.php'; 
 function GetBedrijvenLijst($offset = null){
     $link = mysqli_connect(server, user, password, database);
-    $sql = "select bedrijfsnaam from bedrijven ";
+    $sql = "SELECT bedrijfsnaam FROM bedrijven ";
     if(isset($_POST['search'])){
         $search = $_POST['search'];
         $sql .= " WHERE instr(bedrijfsnaam, '$search')";

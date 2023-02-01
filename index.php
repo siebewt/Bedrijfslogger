@@ -15,7 +15,12 @@ session_start();
 <?php
 include('header.php');
 requireValidUser();
-function GetBedrijf(){
+if(isset($_GET['name'])){
+    if ($_GET['name'] == 'true'){
+        echo "<script>window.alert('Naam bestaat al')</script>";
+    }
+}
+function GetBedrijfNaam(){
     $link = mysqli_connect(server, user, password, database);
     if (isset($_GET['bedrijf'])){
         $bedrijf = $_GET['bedrijf'];
@@ -26,9 +31,13 @@ function GetBedrijf(){
     $sql = "SELECT t0.id, t0.image, t0.bedrijfsnaam, t1.Bid, t1.notitie, t2.tasks, t0.date FROM bedrijven t0 LEFT JOIN notities t1 ON t0.id = t1.Bid" 
     . " LEFT JOIN tasks t2 ON t0.id = t2.Bid WHERE bedrijfsnaam = '$bedrijf'"
     . " LIMIT 1";
+    // $sql = "SELECT t0.id, t0.image, t0.bedrijfsnaam, t1.Bid, t1.notitie, t2.tasks, t0.date FROM bedrijven t0 LEFT JOIN notities t1 ON t0.id = t1.Bid" 
+    // . " LEFT JOIN tasks t2 ON t0.id = t2.Bid WHERE bedrijfsnaam = '$bedrijf'"
+    // . " LIMIT 1";
     //select bedrijfsnaam from bedrijven WHERE instr(bedrijfsnaam, "Bedrijf");
     //SELECT t0.id, t0.image, t0.bedrijfsnaam, t1.Bid, t1.notitie FROM bedrijven t0 INNER JOIN notities t1 ON t0.id = t1.Bid WHERE bedrijfsnaam = '$bedrijf
-
+    //$result=mysqli_query($link,$sql);
+    //$amount = mysqli_num_rows ($result);
     $res = $link->query($sql);
     while ($row = $res->fetch_assoc()) {
         ?>
@@ -45,25 +54,64 @@ function GetBedrijf(){
         </div>    
         <?php } ?>
     </div>
-    <div class="card-holder">
+    <?php
+    }
+
+}
+function GetBedrijfnotitie(){
+    $link = mysqli_connect(server, user, password, database);
+    if (isset($_GET['bedrijf'])){
+        $bedrijf = $_GET['bedrijf'];
+    }
+    else{
+        $bedrijf = "";
+    }
+    $notities = "SELECT t0.bedrijfsnaam, t0.id, t1.Bid, t1.notitie FROM bedrijven t0 LEFT JOIN notities t1 ON t0.id = t1.Bid WHERE bedrijfsnaam = '$bedrijf'";
+    $result = $link->query($notities);
+    $amount = mysqli_num_rows ( $result );
+    $five = 5;
+    $notities .= "LIMIT 1";
+    $res = $link->query($notities);
+    while ($row = $res->fetch_assoc()) {
+        // for ($amount < 5; $amount != 5;) {
+        //     echo '<iput type="submit" class="login-button" value="Verzend" name="verzend">';
+        // }
+        ?>
         <div class="card">
             <p>notitie</p>
             <a href="upload/notitie.php?Bid=<?php echo $row['id'];?>&amp;bedrijf=<?php echo $bedrijf?>"><i class="fa fa-plus" aria-hidden="true"></i></a>
             <p class="text"><?php echo $row['notitie'];?></p>
         </div>
-        <div class="card">
+    <?php
+}
+}
+function GetBedrijfTasks(){
+    $link = mysqli_connect(server, user, password, database);
+    if (isset($_GET['bedrijf'])){
+        $bedrijf = $_GET['bedrijf'];
+    }
+    else{
+        $bedrijf = "";
+    }
+    $tasks = "SELECT t0.bedrijfsnaam, t0.id, t1.Bid, t1.tasks FROM bedrijven t0 LEFT JOIN tasks t1 ON t0.id = t1.Bid WHERE bedrijfsnaam = '$bedrijf'";
+    $res = $link->query($tasks);
+    while ($row = $res->fetch_assoc()) {
+        ?>
+    <div class="card">
         <p>Tasks</p>
-        <a href="upload/tasks.php?Bid=<?php echo $row['id'];?>"><i class="fa fa-plus" aria-hidden="true"></i></a>
+        <a href="upload/tasks.php?Bid=<?php echo $row['id'];?>&amp;bedrijf=<?php echo $bedrijf?>"><i class="fa fa-plus" aria-hidden="true"></i></a>
         <p><?php echo $row['tasks'];?></p>
     </div>
-    </div>
-    <?php
-    }
-
+        <?php
+}
 }
 ?>
 <div class="body-wrapper"><?php
-GetBedrijf();
+GetBedrijfNaam();
+echo '<div class="card-holder">';
+GetBedrijfTasks();
+GetBedrijfnotitie();
+echo '</div>';
 ?>
 </div>
 </body>
