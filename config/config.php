@@ -5,9 +5,17 @@ define("password","mw/2!GIvqFfsJjsg");
 define("database","Bedrijven");
 
 class delete{
-    public $id;
-    function delete($delete){
-    echo "<a href='delete.php?id=".$row['id']."&amp;db=projecten&amp;location=projecten_crud.php&amp;image=".$row['image']." onClick='return confirm('Weet je zeker dat je dit wilt verwijderen?')' class='table-link'>Verwijderen</a></p>";
+    public $delete;
+    protected $bedrijf;
+    protected $id;
+    protected $table;
+    protected $location;
+    function setdelete($id,$table,$location = NULL){
+        $this->delete = "id=$id&amp;table=$table&amp;location=$location";
+        /**delete.php?id=<?php echo $row['id'];?>&amp;table=contactspersoon&amp;location=index.php*/
+    }
+    function get_delete() {
+        return $this->delete;
 }
 }
 

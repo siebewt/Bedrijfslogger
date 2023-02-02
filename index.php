@@ -13,16 +13,25 @@ session_start();
 <body>
 <a class="account" href="account.php"><i class="fa-solid fa-user fa-3x"></i></a>
 <?php
+//haalt lijst met bedrijven op
 include('header.php');
+//check of de pagina bezoeker een gebruiker is als niet dan stuurt ie hem naar de inglogpagina
 requireValidUser();
 
+
+//haalt error op van upload pagina om de error te laten zien
 if(isset($_GET['name'])){
     if ($_GET['name'] == 'true'){
         echo "<script>window.alert('Naam bestaat al')</script>";
     }
 }
 
+$db = new DB();
+$bedrijvenlijst = $db -> getBedrijven();
+//while loop hier
+// haalt alle contacten op gelimiteerd tot 5 contacten max
 function GetContactpersonen($id){
+    //haal connectie met db op
     $link = mysqli_connect(server, user, password, database);
     if (isset($_GET['bedrijf'])){
         $bedrijf = $_GET['bedrijf'];
@@ -34,27 +43,45 @@ function GetContactpersonen($id){
     //t0.bedrijfsnaam, t0.id, t1.Bid, t1.tasks, t1.id FROM bedrijven t0 
     //SELECT id, naam, Bid FROM
     //$sql = "SELECT t0.bedrijfsnaam, t0.id, t1.id, t1.naam, t1.Bid FROM bedrijven t0 LEFT JOIN contactspersoon t1 ON t0.id = t1.Bid WHERE bedrijfsnaam = '$bedrijf";
-    $sql = "SELECT t0.bedrijfsnaam, t0.id, t1.Bid, t1.naam, t1.id FROM bedrijven t0 LEFT JOIN contactspersoon t1 ON t0.id = t1.Bid WHERE bedrijfsnaam = '$bedrijf'";
+    //haal de specifieke data op voor de functie
+    $sql = "SELECT t0.bedrijfsnaam, t0.id, t1.Bid, t1.naam, t1.id, t1.email FROM bedrijven t0 LEFT JOIN contactspersoon t1 ON t0.id = t1.Bid WHERE bedrijfsnaam = '$bedrijf' LIMIT 5";
     //$sql .= " limit 5";
     $res = $link->query($sql);
+    if(isset($_GET['bedrijf'])){
     ?>
     <div class="AddCPersoon">
     <a href="upload/addcontact.php?Bid=<?php echo $id;?>&amp;bedrijf=<?php echo $bedrijf?>"><i class="fa-solid fa-plus"></i></a>
 </div>
+<?php }?>
 <div class='navbar-personen'>
     <?php
+    //while loop om data te laten zien
     while ($row = $res->fetch_assoc()) {
-        ?>
+        if(isset($row['id'])){
+            // $bedrijf = new delete();
+            // $id = new delete();
+            // // $table = new delete();
+            // // $location = new delete();
+             $delete = new delete();
+            // //$bedrijf->set_name();
+            $delete->setdelete($row['id'],'contactspersoon','index.php');
+            $delete1 = $delete->get_delete();
+            // $table->setdelete('contactspersoon');
+            // $location->setdelete('index.php');
+            ?>
         <div class="c-card">
-        <a href="./index.php'.$row['bedrijfsnaam'].'"><?php echo $row['naam'];?></a>
-        <a class="delete-button" href="delete.php?id=<?php echo $row['id'];?>&amp;table=contactspersoon&amp;location=index.php" onClick="return confirm('Weet je zeker dat je dit wilt verwijderen?')" class='table-link'><i class="fa fa-trash fa-1x" id="deletebutton" aria-hidden="true"></i></a>
+        <p><?php echo $row['naam'];?></p>
+        <p><?php echo $row['email'];?></p>
+        <a class="delete-button" href="delete.php?<?php echo $delete1 ?>" onClick="return confirm('Weet je zeker dat je dit wilt verwijderen?')" class='table-link'><i class="fa fa-trash fa-1x" id="deletebutton" aria-hidden="true"></i></a>
         </div>
-        <?php
+        <?php }
     }
     ?></div><?php
 }
 
+//haal bedrijfsnaams op en logo
 function GetBedrijfNaam(){
+    //haal connectie op voor de functie
     $link = mysqli_connect(server, user, password, database);
     if (isset($_GET['bedrijf'])){
         $bedrijf = $_GET['bedrijf'];
@@ -62,6 +89,7 @@ function GetBedrijfNaam(){
     else{
         $bedrijf = "";
     }
+    //haal de specifieke data op van de tabellen voor de functie
     $sql = "SELECT t0.id, t0.image, t0.bedrijfsnaam, t1.Bid, t1.notitie, t2.tasks, t0.date FROM bedrijven t0 LEFT JOIN notities t1 ON t0.id = t1.Bid" 
     . " LEFT JOIN tasks t2 ON t0.id = t2.Bid WHERE bedrijfsnaam = '$bedrijf'"
     . " LIMIT 1";
@@ -73,6 +101,7 @@ function GetBedrijfNaam(){
     //$result=mysqli_query($link,$sql);
     //$amount = mysqli_num_rows ($result);
     $res = $link->query($sql);
+    //while loop om de data te laten zien
     while ($row = $res->fetch_assoc()) {
         global $Bid;
         $Bid = $row['id'];
@@ -99,6 +128,7 @@ function GetBedrijfNaam(){
 
 }
 
+//functie om de notities van de specifieke bedrijf op te halen
 function GetBedrijfnotitie($id){
     $link = mysqli_connect(server, user, password, database);
     if (isset($_GET['bedrijf'])){
@@ -107,9 +137,11 @@ function GetBedrijfnotitie($id){
     else{
         $bedrijf = "";
     }
+    //benodigde data van notities ophalen doormiddel van de bedrijfsnaam
     $notities = "SELECT t0.bedrijfsnaam, t0.id, t1.Bid, t1.notitie, t1.id FROM bedrijven t0 LEFT JOIN notities t1 ON t0.id = t1.Bid WHERE bedrijfsnaam = '$bedrijf'";
     $result = $link->query($notities);
     $amount = mysqli_num_rows ( $result );
+    //check voor de geselecteerde pagina voor de notities
     if(isset($_GET['pagenotitie'])){
         $offset = $_GET['pagenotitie'];
         $offset = $offset-1;
@@ -120,8 +152,8 @@ function GetBedrijfnotitie($id){
     $notities .= "LIMIT 1 OFFSET $offset";
     $res = $link->query($notities);
     $tel = 1;
+    //while loop om de data te laten zien
     while ($row = $res->fetch_assoc()) {
-        // echo str_repeat('<p>t</p><iput type="submit" class="test" value="Verzend" name="verzend">', $amount)
         ?>
         <div class="card">
             <p>notitie</p>
@@ -143,7 +175,9 @@ function GetBedrijfnotitie($id){
 }
 }
 
+//functie om bedrijfstasks op te halen
 function GetBedrijfTasks($id){
+    //haal connectie op voor de functie
     $link = mysqli_connect(server, user, password, database);
     if (isset($_GET['bedrijf'])){
         $bedrijf = $_GET['bedrijf'];
@@ -151,9 +185,11 @@ function GetBedrijfTasks($id){
     else{
         $bedrijf = "";
     }
+    //haal de tasks data op doormiddel van de bedrijfsnaam
     $tasks = "SELECT t0.bedrijfsnaam, t0.id, t1.Bid, t1.tasks, t1.id FROM bedrijven t0 LEFT JOIN tasks t1 ON t0.id = t1.Bid WHERE bedrijfsnaam = '$bedrijf'";
     $result = $link->query($tasks);
     $amount = mysqli_num_rows ( $result );
+    //check de selecteerde pagina om die specifiek op te halen
     if(isset($_GET['pagetasks'])){
         $offset = $_GET['pagetasks'];
         $offset = $offset-1;
@@ -161,9 +197,11 @@ function GetBedrijfTasks($id){
     else {
         $offset = 0;
     }
+    //limiteer het aantal data dat word opgehaald
     $tasks .= "LIMIT 1 OFFSET $offset";
     $res = $link->query($tasks);
     $tel = 1;
+    //while loop om de data te laten zien
     while ($row = $res->fetch_assoc()) {
         ?>
     <div class="card">
@@ -189,6 +227,7 @@ function GetBedrijfTasks($id){
 ?>
 <div class="body-wrapper"><?php
 $Bid = "";
+//de functies die worden uitgevoerd
 GetBedrijfNaam();
 GetContactpersonen($Bid);
 echo '<div class="card-holder">';

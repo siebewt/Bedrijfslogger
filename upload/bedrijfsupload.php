@@ -45,7 +45,4 @@ $stmt = $link->prepare($sql);
 $stmt->bind_param("sssss", $bedrijfsnaam, $image, $date, $provincies, $sector);
 $stmt->execute();
 
-// if ($stmt == TRUE){
-//     echo "goed";
-// }
 header('Location: ../../bedrijfslogger');

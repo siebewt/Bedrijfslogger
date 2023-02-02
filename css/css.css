@@ -31,13 +31,14 @@ body{
 }
 .AddCPersoon{
     position: absolute;
-    top: 180px;
+    top: 20px;
     right: 160px;
 }
 
 .c-card{
     border: 1px solid;
     padding: 15px;
+    padding-bottom: 0px;
     text-align: center;
 }
 .c-card a[class=delete-button]{
@@ -77,6 +78,12 @@ body{
 }
 
 .accountdisplay form{
+    margin: auto;
+}
+
+.upload{
+    width: 50%;
+    text-align: center;
     margin: auto;
 }
 

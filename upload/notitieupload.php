@@ -15,5 +15,5 @@ $stmt->bind_param("sii", $notitie, $Bid, $Cid);
 $stmt->execute();
 //$res = mysqli_query($link, $sql);
 echo $location;
-header("Location: ../../bedrijfslogger?bedrijf=$location");
+//header("Location: ../../bedrijfslogger?bedrijf=$location");
 ?>

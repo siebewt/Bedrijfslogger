@@ -17,10 +17,13 @@ function GetUser(){
         while ($row = $res->fetch_assoc()) {
             ?>
             <div class="accountsdisplay">
-                <a class="usericon" href="upload/accountbeheer.php?id='<?php echo $row['id'];?>'"><i class="fa-solid fa-user fa-3x"></i> <?php echo $row['username']?></a>
+                <a class="usericon" href="upload/accountbeheer.php?id=<?php echo $row['id'];?>"><i class="fa-solid fa-user fa-3x"></i> <?php echo $row['username']?></a>
             </div>
             <?php
     }
+}
+if (isset($_POST['uitloggen'])){
+    session_destroy();
 }
 ?>
 <!DOCTYPE html>
@@ -35,6 +38,9 @@ function GetUser(){
 </head>
 <body>
     <a class="account-terug" href="index.php">Terug</a>
+    <form method="POST" class="center" action="" method="post">
+        <button type="uitloggen" name="uitloggen" id="uitloggen">uitloggen</button>
+    </form>
     <div class="search-bar-account">
     <form action="account.php" method="post" name="cmsform" enctype="multipart/form-data">
     <input type="text" name="searchuser" id="searchuser" placeholder="Zoek">
