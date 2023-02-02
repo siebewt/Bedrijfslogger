@@ -34,6 +34,7 @@
       <option value="limburg">limburg</option>
     </select>
     <br>
+    <br>
     <label for="sector">Sector: </label>
     <select name="sector" id="sector">
       <option value="overheid">Overheid</option>
@@ -41,11 +42,22 @@
       <option value="Particulier">Particulier</option>
     </select>
     <br>
+    <br>
 
 
-    <a href="index.php" class="link">Terug</a>
+    <a href="index.php" class="link">Terug</a><br><br>
 
     <input type="submit" class="login-button" value="Verzend" name="verzend">
+</form>
+</div>
+<div class="upload">
+<form class="form" action="notitieupload.php" method="post" name="cmsform" enctype="multipart/form-data">
+    <h1 class="login-title">Notitie</h1>
+    <p>Notitie: </p><input type="text" name="notitie" id="notitie" required="required"/>
+
+    <br><br><a href="index.php" class="link">Terug</a>
+
+    <br><br><input type="submit" class="login-button" value="Verzend" name="verzend">
 </form>
 </div>
 <div class='image-preview'><p>Foto die word toegevoegd:</p><br><br><img id="output" alt='foto' src=""></div>

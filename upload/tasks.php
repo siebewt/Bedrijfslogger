@@ -15,7 +15,6 @@
     <p>Tasks: </p><input type="text" name="tasks" id="tasks" required="required"/>
     <input type="hidden" name="Bid" id="Bid" required="required" value="<?php echo $_GET['Bid'];?>"/>
     <input type="hidden" name="Cid" id="Cid" required="required" value="<?php echo $_SESSION['id'];?>"/>
-    <input type="hidden" name="bedrijf" value="<?php echo $_GET['bedrijf'];?>"/>
 
 
     <br><br><a href="index.php" class="link">Terug</a>

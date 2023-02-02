@@ -6,7 +6,6 @@
     $tasks = mysqli_real_escape_string($link, $_POST['tasks']);
     $Bid = intval($_POST['Bid']);
     $Cid = intval($_POST['Cid']);
-    $location = mysqli_real_escape_string($link, $_POST['bedrijf']);
 
 
 setlocale(LC_ALL,'nl_NL');
@@ -19,4 +18,4 @@ $stmt->execute();
 if ($res == TRUE){
     echo "goed";
 }
-header("Location: ../../bedrijfslogger?bedrijf=$location");
+header("Location: ../../bedrijfslogger?bedrijf=$Bid");

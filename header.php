@@ -5,7 +5,7 @@
 include 'config/config.php'; 
 function GetBedrijvenLijst($offset = null){
     $link = mysqli_connect(server, user, password, database);
-    $sql = "SELECT bedrijfsnaam FROM bedrijven ";
+    $sql = "SELECT id, bedrijfsnaam FROM bedrijven ";
     if(isset($_POST['search'])){
         $search = $_POST['search'];
         $sql .= " WHERE instr(bedrijfsnaam, '$search')";
@@ -21,7 +21,7 @@ function GetBedrijvenLijst($offset = null){
     </div>
     <?php
     while ($row = $res->fetch_assoc()) {
-        echo '<a class="Bedrijf" href="./index.php?bedrijf='.$row['bedrijfsnaam'].'">'.$row['bedrijfsnaam'].'</a>';
+        echo '<a class="Bedrijf" href="./index.php?bedrijf='.$row['id'].'">'.$row['bedrijfsnaam'].'</a>';
     }
 }
 ?>
