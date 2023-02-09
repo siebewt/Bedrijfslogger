@@ -3,7 +3,7 @@
 
 class weather{
     public function getWeather(){
-    $url = 'https://api.openweathermap.org/data/2.5/forecast/daily?q=Amsterdam&units=metric&cnt=1&lang=nl&APPID=8805930c35871b88b6dee16925c1ce05';
+    $url = 'https://api.openweathermap.org/data/2.5/forecast/daily?q=Amsterdam&units=metric&cnt=1&lang=nl&APPID='';
     $data = json_decode(file_get_contents($url));
     $items = $data->list;
 
