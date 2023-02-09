@@ -1,9 +1,9 @@
-<?php
-// function DropDown($table_name, $column_name){
-//   $query = "SELECT $table_name FROM bedrijven";
-
-// }
+<?php 
+include './WeatherCaller.php';
+$apicall = new weather();
+$weer = $apicall->getWeather();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +16,7 @@
 <body>
   <div class="b-upload">
 <form class="form" action="bedrijfsupload.php" method="post" name="cmsform" enctype="multipart/form-data">
-    <h1 class="login-title">Bedrijfs toevoegen</h1>
+    <h1 class="login-title">Bedrijf toevoegen</h1>
     <p>Bedrijfsnaam: *</p><input type="text" name="bedrijfsnaam" id="bedrijfsnaam" required="required"/>
     <p>Selecteer logo om te uploaden:<input type="file" name="file" onchange="loadFile(event)" id="file" /></p>
     <label for="provincies">Provincie: </label>
@@ -48,12 +48,9 @@
     <a href="index.php" class="link">Terug</a><br><br>
 
     <input type="submit" class="login-button" value="Verzend" name="verzend">
-</form>
-</div>
-<div class="upload">
-<form class="form" action="notitieupload.php" method="post" name="cmsform" enctype="multipart/form-data">
     <h1 class="login-title">Notitie</h1>
-    <p>Notitie: </p><input type="text" name="notitie" id="notitie" required="required"/>
+    <p>Notitie: </p><input type="text" name="notitie" id="notitie"/>
+    <input type="hidden" name="Cid" id="Cid" required="required" value="<?php echo $_SESSION['id'];?>"/>
 
     <br><br><a href="index.php" class="link">Terug</a>
 

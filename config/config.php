@@ -12,17 +12,20 @@ class delete{
     protected $location;
     function setdelete($id,$table,$location = NULL){
         $this->delete = "id=$id&amp;table=$table&amp;location=$location";
-        /**delete.php?id=<?php echo $row['id'];?>&amp;table=contactspersoon&amp;location=index.php*/
-    }
-    function get_delete() {
         return $this->delete;
+    }
 }
-}
-class DB{
 
-    function GetBedrijfNaam(){
-        //haal connectie op voor de functie
-        $link = mysqli_connect(server, user, password, database);
+class DB{
+    private $link;
+    
+    public function __construct()
+    {
+        $this->link = mysqli_connect(server, user, password, database);
+    }
+
+    public function GetBedrijfNaam(){
+
         if (isset($_GET['bedrijf'])){
             $bedrijf = $_GET['bedrijf'];
         }
@@ -34,10 +37,10 @@ class DB{
         . " LEFT JOIN tasks t2 ON t0.id = t2.Bid WHERE t0.id = '$bedrijf'"
         . " LIMIT 1";
         //while loop om de data te laten zien
-        return $res = $link->query($sql);
+        return $res = $this->link->query($sql);
     }
 
-    function GetBedrijfnotitie($id){
+    public function GetBedrijfnotitie($id){
         $link = mysqli_connect(server, user, password, database);
         if (isset($_GET['bedrijf'])){
             $bedrijf = $_GET['bedrijf'];
@@ -61,7 +64,7 @@ class DB{
         return $res = $link->query($notities);
     }
 
-    function GetNotitieAmount(){
+    public function GetNotitieAmount(){
         $link = mysqli_connect(server, user, password, database);
         if (isset($_GET['bedrijf'])){
             $bedrijf = $_GET['bedrijf'];
@@ -75,7 +78,7 @@ class DB{
         return $amount = mysqli_num_rows ( $result );
     }
 
-    function GetBedrijfTasks($id){
+    public function GetBedrijfTasks($id){
         //haal connectie op voor de functie
         $link = mysqli_connect(server, user, password, database);
         if (isset($_GET['bedrijf'])){
@@ -97,12 +100,11 @@ class DB{
         }
         //limiteer het aantal data dat word opgehaald
         $tasks .= "LIMIT 1 OFFSET $offset";
-        $tel = 1;
         $id = $id;
         return $res = $link->query($tasks);
     }
 
-    function GetTasksAmount(){
+    public function GetTasksAmount(){
         $link = mysqli_connect(server, user, password, database);
         if (isset($_GET['bedrijf'])){
             $bedrijf = $_GET['bedrijf'];
@@ -116,7 +118,7 @@ class DB{
         return $amount = mysqli_num_rows ( $result );
     }       
 
-    function GetContactpersonen($id){
+    public function GetContactpersonen($id){
         //haal connectie met db op
         $link = mysqli_connect(server, user, password, database);
         if (isset($_GET['bedrijf'])){
@@ -125,13 +127,8 @@ class DB{
         else{
             $bedrijf = "";
         }
-        //SELECT t0.bedrijfsnaam, t0.id, t1.Bid, t1.tasks, t1.id FROM bedrijven t0 LEFT JOIN tasks t1 ON t0.id = t1.Bid WHERE bedrijfsnaam = '$bedrijf'
-        //t0.bedrijfsnaam, t0.id, t1.Bid, t1.tasks, t1.id FROM bedrijven t0 
-        //SELECT id, naam, Bid FROM
-        //$sql = "SELECT t0.bedrijfsnaam, t0.id, t1.id, t1.naam, t1.Bid FROM bedrijven t0 LEFT JOIN contactspersoon t1 ON t0.id = t1.Bid WHERE bedrijfsnaam = '$bedrijf";
         //haal de specifieke data op voor de functie
         $sql = "SELECT t0.bedrijfsnaam, t0.id, t1.Bid, t1.naam, t1.id, t1.email FROM bedrijven t0 LEFT JOIN contactspersoon t1 ON t0.id = t1.Bid WHERE t0.id = '$bedrijf' LIMIT 5";
-        //$sql .= " limit 5";
         ?>
         <div class="AddCPersoon">
         <a href="upload/addcontact.php?Bid=<?php echo $id;?>&amp;bedrijf=<?php echo $bedrijf?>"><i class="fa-solid fa-plus"></i></a>
@@ -148,7 +145,7 @@ function isAdmin() {
 }
 
 function requireValidUser() {
-    if ($_SESSION['loggedin'] != TRUE) {
+    if ($_SESSION['loggedin'] !== TRUE) {
         header('Location: login.php');
     } 
 }

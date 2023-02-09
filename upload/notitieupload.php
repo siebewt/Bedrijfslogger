@@ -3,7 +3,7 @@
     // remote file path
     $link = mysqli_connect(server, user, password, database);
     mysqli_set_charset($link,"UTF8");
-    $notitie = mysqli_real_escape_string($link, $_POST['notitie']);
+    $notitie = strip_tags(mysqli_real_escape_string($link, $_POST['notitie']));
     $Bid = intval($_POST['Bid']);
     $Cid = intval($_POST['Cid']);
 

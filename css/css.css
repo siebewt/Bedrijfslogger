@@ -7,6 +7,22 @@ a { color:black }
 body{
     margin: 0;
 }
+
+.day{
+    position: absolute;
+    top: 50px;
+    right: 50px;
+}
+
+.days{
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}
+.temp{
+    font-size: large;
+}
+
 .navbar{
     display: flex;
     flex-direction: column;
